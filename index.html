@@ -1,703 +1,252 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sky Digital | Premium Web Design</title>
-  <meta
-    name="description"
-    content="Sky Digital için premium, modern ve responsive ajans landing page."
-  />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
-  <style>
-    :root {
-      --bg: #050505;
-      --bg-soft: rgba(255, 255, 255, 0.04);
-      --card: rgba(255, 255, 255, 0.06);
-      --border: rgba(255, 255, 255, 0.12);
-      --text: #ffffff;
-      --muted: rgba(255, 255, 255, 0.72);
-      --muted-2: rgba(255, 255, 255, 0.5);
-      --glow: rgba(255, 255, 255, 0.18);
-      --shadow: 0 20px 80px rgba(0, 0, 0, 0.45);
-      --radius: 24px;
-      --max-width: 1200px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Inter", sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 30%),
-        linear-gradient(180deg, #050505 0%, #020202 100%);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    .glow {
-      position: fixed;
-      width: 520px;
-      height: 520px;
-      border-radius: 50%;
-      pointer-events: none;
-      background: radial-gradient(circle, var(--glow) 0%, rgba(255,255,255,0.05) 28%, rgba(255,255,255,0) 70%);
-      transform: translate(-50%, -50%);
-      filter: blur(18px);
-      z-index: 0;
-      transition: left 0.08s linear, top 0.08s linear;
-      mix-blend-mode: screen;
-    }
-
-    .noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.035;
-      z-index: 1;
-      background-image:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35) 0.6px, transparent 0.8px),
-        radial-gradient(circle at 80% 40%, rgba(255,255,255,0.2) 0.6px, transparent 0.8px),
-        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.18) 0.6px, transparent 0.8px);
-      background-size: 160px 160px;
-    }
-
-    .page {
-      position: relative;
-      z-index: 2;
-    }
-
-    .container {
-      width: min(calc(100% - 40px), var(--max-width));
-      margin: 0 auto;
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(14px);
-      background: rgba(5, 5, 5, 0.55);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 76px;
-    }
-
-    .brand {
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      font-size: 1.05rem;
-    }
-
-    .brand span {
-      color: rgba(255,255,255,0.65);
-      font-weight: 500;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.25s ease, opacity 0.25s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-decoration: none;
-      border-radius: 999px;
-      padding: 14px 22px;
-      font-weight: 600;
-      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      background: #ffffff;
-      color: #050505;
-      border: 1px solid #ffffff;
-    }
-
-    .btn-secondary {
-      color: #ffffff;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .hero {
-      min-height: calc(100vh - 76px);
-      display: flex;
-      align-items: center;
-      padding: 80px 0 60px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .hero-copy {
-      max-width: 720px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 22px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #ffffff;
-      box-shadow: 0 0 20px rgba(255,255,255,0.8);
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(3rem, 7vw, 6.2rem);
-      line-height: 0.94;
-      letter-spacing: -0.06em;
-    }
-
-    .hero-copy p {
-      margin: 24px 0 0;
-      font-size: clamp(1rem, 1.8vw, 1.22rem);
-      line-height: 1.75;
-      color: var(--muted);
-      max-width: 640px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 34px;
-    }
-
-    .hero-card {
-      position: relative;
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      min-height: 420px;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: auto -30% 65% auto;
-      width: 280px;
-      height: 280px;
-      background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
-      filter: blur(8px);
-    }
-
-    .hero-card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--muted-2);
-      font-size: 0.92rem;
-      margin-bottom: 38px;
-    }
-
-    .metric {
-      padding: 20px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      margin-bottom: 16px;
-    }
-
-    .metric strong {
-      display: block;
-      font-size: 2.3rem;
-      letter-spacing: -0.05em;
-      margin-bottom: 8px;
-    }
-
-    .metric span {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .section {
-      padding: 110px 0;
-    }
-
-    .section-header {
-      max-width: 700px;
-      margin-bottom: 36px;
-    }
-
-    .section-header h2 {
-      margin: 0 0 14px;
-      font-size: clamp(2rem, 4.5vw, 3.4rem);
-      letter-spacing: -0.05em;
-    }
-
-    .section-header p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 1.02rem;
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-      box-shadow: var(--shadow);
-      transform: translateY(20px);
-      opacity: 0;
-      transition: transform 0.7s ease, opacity 0.7s ease, border-color 0.3s ease, background 0.3s ease;
-    }
-
-    .card.visible,
-    .fade-up.visible {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .card:hover {
-      border-color: rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.08);
-    }
-
-    .card h3 {
-      margin: 0 0 12px;
-      font-size: 1.25rem;
-      letter-spacing: -0.03em;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 0.98rem;
-    }
-
-    .tag {
-      display: inline-block;
-      margin-bottom: 16px;
-      font-size: 0.82rem;
-      color: var(--muted-2);
-      padding: 8px 12px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.03);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .about-box {
-      min-height: 240px;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 20px;
-    }
-
-    .stat {
-      padding: 24px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 2rem;
-      letter-spacing: -0.05em;
-      margin-bottom: 8px;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 0.94rem;
-      line-height: 1.6;
-    }
-
-    .cta {
-      padding-bottom: 120px;
-    }
-
-    .cta-box {
-      position: relative;
-      overflow: hidden;
-      padding: 38px;
-      border-radius: 30px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      box-shadow: var(--shadow);
-    }
-
-    .cta-box::after {
-      content: "";
-      position: absolute;
-      width: 340px;
-      height: 340px;
-      right: -100px;
-      top: -100px;
-      background: radial-gradient(circle, rgba(255,255,255,0.12), transparent 68%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .cta-box h2 {
-      margin: 0 0 16px;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      letter-spacing: -0.05em;
-      max-width: 760px;
-    }
-
-    .cta-box p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.75;
-      max-width: 700px;
-    }
-
-    .cta-actions {
-      margin-top: 28px;
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .footer {
-      padding: 26px 0 40px;
-      color: var(--muted-2);
-      font-size: 0.95rem;
-    }
-
-    .fade-up {
-      transform: translateY(28px);
-      opacity: 0;
-      transition: transform 0.8s ease, opacity 0.8s ease;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .services,
-      .about-grid,
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 50px;
-      }
-
-      .hero-card {
-        min-height: auto;
-      }
-
-      .nav-links a.hide-mobile {
-        display: none;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        width: min(calc(100% - 28px), var(--max-width));
-      }
-
-      .nav-inner {
-        min-height: 68px;
-      }
-
-      .nav-links {
-        gap: 12px;
-      }
-
-      .hero-actions,
-      .cta-actions {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .section,
-      .cta {
-        padding: 84px 0;
-      }
-
-      .cta-box,
-      .hero-card,
-      .card {
-        padding: 22px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERBEY TEKNİK - Kalıp Makine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: #0ea5e9;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(14, 165, 233, 0.2);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav a {
+            color: white;
+            margin-left: 30px;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        nav a:hover {
+            opacity: 0.8;
+        }
+        .hero {
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #0ea5e9;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .services {
+            padding: 60px 20px;
+            background: #f8f9fa;
+        }
+        .services h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #0ea5e9;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid #0ea5e9;
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-card h3 {
+            color: #0ea5e9;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        .about {
+            padding: 60px 20px;
+            background: white;
+        }
+        .about h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #0ea5e9;
+        }
+        .about p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        .contact {
+            background: #0ea5e9;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .contact h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+        }
+        .contact-item p {
+            margin: 10px 0;
+        }
+        footer {
+            background: #1e1e1e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            nav a {
+                margin: 10px 20px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="glow" id="glow"></div>
-  <div class="noise"></div>
-
-  <div class="page">
-    <nav class="nav">
-      <div class="container nav-inner">
-        <div class="brand">Sky Digital <span>/ Studio</span></div>
-        <div class="nav-links">
-          <a href="#services" class="hide-mobile">Hizmetler</a>
-          <a href="#about" class="hide-mobile">Hakkımızda</a>
-          <a href="#contact" class="btn btn-secondary">İletişim</a>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">ERBEY TEKNİK</div>
+                <nav>
+                    <a href="#services">Hizmetler</a>
+                    <a href="#about">Hakkımızda</a>
+                    <a href="#contact">İletişim</a>
+                </nav>
+            </div>
         </div>
-      </div>
-    </nav>
-
-    <header class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy fade-up">
-          <div class="eyebrow">Modern, hızlı ve premium web deneyimleri</div>
-          <h1>
-            Markanı dijitalde
-            <br />
-            güçlü göster.
-          </h1>
-          <p>
-            Sky Digital, modern markalar için yüksek dönüşüm odaklı,
-            estetik ve hızlı web siteleri tasarlar. Sade görünür, güçlü hissettirir.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">Projeni Başlat</a>
-            <a href="#services" class="btn btn-secondary">Neler Yapıyoruz</a>
-          </div>
-        </div>
-
-        <div class="hero-card fade-up">
-          <div class="hero-card-top">
-            <span>Premium Web Design</span>
-            <span>Sky Digital</span>
-          </div>
-
-          <div class="metric">
-            <strong>Modern</strong>
-            <span>
-              Minimal, güçlü ve güven veren tasarımlar ile markanı üst seviyeye taşır.
-            </span>
-          </div>
-
-          <div class="metric">
-            <strong>Responsive</strong>
-            <span>
-              Mobil, tablet ve masaüstünde kusursuz çalışan tek sayfa deneyimi.
-            </span>
-          </div>
-
-          <div class="metric">
-            <strong>Fast</strong>
-            <span>
-              Hızlı açılan yapı sayesinde hem kullanıcı deneyimi hem ilk izlenim güçlenir.
-            </span>
-          </div>
-        </div>
-      </div>
     </header>
 
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-header fade-up">
-          <h2>Hizmetler</h2>
-          <p>
-            Markanın dijital görünümünü sade ama etkileyici bir şekilde inşa ediyoruz.
-            Tasarım, hız ve dönüşüm odağını tek bir deneyimde topluyoruz.
-          </p>
+    <section class="hero">
+        <div class="container">
+            <h1>ERBEY TEKNİK KALIP MAKİNE</h1>
+            <p>Endüstriyel Çözümlerde Uzman</p>
+            <a href="#contact" class="cta-button">Bize Ulaşın</a>
         </div>
-
-        <div class="services">
-          <div class="card">
-            <div class="tag">01 / Landing Page</div>
-            <h3>Premium Tanıtım Sayfaları</h3>
-            <p>
-              Kampanya, reklam ve marka sunumu için dikkat çekici,
-              yüksek algı yaratan tek sayfa tasarımlar.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="tag">02 / Kurumsal Site</div>
-            <h3>Modern Web Tasarım</h3>
-            <p>
-              Güven veren, sade ve profesyonel kurumsal web siteleri ile
-              dijital vitrininizi güçlü hale getiriyoruz.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="tag">03 / Dönüşüm</div>
-            <h3>Satış Odaklı Yapı</h3>
-            <p>
-              Sadece güzel görünen değil, aynı zamanda iletişim ve dönüşüm sağlayan
-              sayfa kurguları oluşturuyoruz.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-header fade-up">
-          <h2>Sky Digital yaklaşımı</h2>
-          <p>
-            İyi bir web sitesi sadece tasarım değildir. İlk izlenim, güven, akış,
-            hız ve marka hissinin tek ekranda buluşmasıdır.
-          </p>
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Hizmetlerimiz</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>CAD Tasarımı</h3>
+                    <p>Profesyonel CAD tasarımı ve teknik çizim hizmetleri ile projeleriniz hayata geçirilir.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Kalıp Üretimi</h3>
+                    <p>Yüksek kaliteli kalıp üretimi ve imalat hizmetleri ile en iyi sonuçları sunuyoruz.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Makine Tasarımı</h3>
+                    <p>Özel makine tasarımı ve endüstriyel çözümler için danışmanlık hizmetleri.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Teknik Danışmanlık</h3>
+                    <p>Projeleriniz için kapsamlı teknik danışmanlık ve destek sağlarız.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Kalite Kontrol</h3>
+                    <p>Üretim sonrası kapsamlı kalite kontrol ve testler ile kaliteyi garanti altına alıyoruz.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Proje Yönetimi</h3>
+                    <p>Başlangıçtan sonuna kadar tüm proje sürecini profesyonel şekilde yönetiyoruz.</p>
+                </div>
+            </div>
         </div>
-
-        <div class="about-grid">
-          <div class="card about-box">
-            <div class="tag">Studio Vision</div>
-            <h3>Az ama güçlü detay</h3>
-            <p>
-              Gözü yormayan, premium hissi veren ve ziyaretçiyi doğru noktaya
-              yönlendiren minimal tasarım dili kullanıyoruz.
-            </p>
-          </div>
-
-          <div class="card about-box">
-            <div class="tag">Execution</div>
-            <h3>Hızlı üretim, güçlü sonuç</h3>
-            <p>
-              Fikirden yayına kadar sade bir sistemle ilerleyip modern ve etkili
-              siteleri kısa sürede yayına alıyoruz.
-            </p>
-          </div>
-        </div>
-
-        <div class="stats fade-up">
-          <div class="stat">
-            <strong>01</strong>
-            <span>Tek sayfada net, premium ve stratejik marka anlatımı</span>
-          </div>
-          <div class="stat">
-            <strong>02</strong>
-            <span>Responsive ve modern kullanıcı deneyimi</span>
-          </div>
-          <div class="stat">
-            <strong>03</strong>
-            <span>Hızlı yayın, kolay güncelleme ve güçlü ilk izlenim</span>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <section class="cta" id="contact">
-      <div class="container">
-        <div class="cta-box fade-up">
-          <h2>Markan için güçlü bir dijital vitrin oluşturalım.</h2>
-          <p>
-            Eğer sen de modern, premium ve güven veren bir web sitesi istiyorsan,
-            Sky Digital ile projeni bir üst seviyeye taşıyabilirsin.
-          </p>
-
-          <div class="cta-actions">
-            <a href="mailto:hello@skydigital.com" class="btn btn-primary">Teklif Al</a>
-            <a href="#" class="btn btn-secondary">Instagram'a Git</a>
-          </div>
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Hakkımızda</h2>
+            <p>ERBEY TEKNİK KALIP MAKİNE SAN.VE TİC.LTD.ŞTİ, endüstriyel kalıp ve makine tasarımı alanında uzmanlaşmış bir şirkettir.</p>
+            <p>Yılların deneyimi ve teknolojik altyapısı ile müşterilerimizin en zorlu projelerini başarıyla tamamlıyoruz.</p>
+            <p>CAD tasarımından üretime kadar, tüm süreçte kalite ve mükemmelliği garantiye alıyoruz.</p>
         </div>
-      </div>
     </section>
 
-    <footer class="footer">
-      <div class="container">
-        © 2026 Sky Digital — Premium Web Design Studio
-      </div>
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>İletişim Bilgileri</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Telefon</h3>
+                    <p>05335206192</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p>info@erbeyteknik.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Adres</h3>
+                    <p>Çalı, 40. Sk. NO:4/A<br>16110 Nilüfer/Bursa<br>Türkiye</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 ERBEY TEKNİK KALIP MAKİNE. Tüm Hakları Saklıdır.</p>
     </footer>
-  </div>
-
-  <script>
-    const glow = document.getElementById("glow");
-
-    window.addEventListener("mousemove", (e) => {
-      glow.style.left = e.clientX + "px";
-      glow.style.top = e.clientY + "px";
-    });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      {
-        threshold: 0.15
-      }
-    );
-
-    document.querySelectorAll(".card, .fade-up").forEach((el) => {
-      observer.observe(el);
-    });
-  </script>
 </body>
 </html>
